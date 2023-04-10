@@ -1,10 +1,9 @@
-package com.ll.정회성.재귀_정렬;
+package com.ll.백준.재귀_정렬;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class p2075 {

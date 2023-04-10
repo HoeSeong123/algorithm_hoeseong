@@ -1,4 +1,4 @@
-package com.ll.정회성.자료구조;
+package com.ll.백준.자료구조;
 
 import java.io.BufferedReader;
 import java.io.IOException;

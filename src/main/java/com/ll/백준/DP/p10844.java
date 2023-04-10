@@ -1,4 +1,4 @@
-package com.ll.정회성.DP;
+package com.ll.백준.DP;
 
 import java.io.BufferedReader;
 import java.io.IOException;

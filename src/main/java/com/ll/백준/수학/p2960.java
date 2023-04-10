@@ -1,4 +1,4 @@
-package com.ll.정회성.수학;
+package com.ll.백준.수학;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,8 @@
-package com.ll.정회성.자료구조;
+package com.ll.백준.자료구조;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.Buffer;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class p10828 {
