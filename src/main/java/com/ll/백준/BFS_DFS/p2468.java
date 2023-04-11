@@ -23,8 +23,6 @@ public class p2468 {
         int maxHeight = 0;
         int maxSafe = 0;
 
-        Queue<Integer> queue = new LinkedList<>();
-
         map = new int[N + 1][N + 1];
 
         for (int y = 0; y < N; y++) {
