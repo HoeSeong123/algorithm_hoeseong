@@ -67,6 +67,7 @@ public class p2468 {
             if (map[ny][nx] > rain) {
                 dfs(nx, ny, rain);
             }
+
         }
     }
 }
