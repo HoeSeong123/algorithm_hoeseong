@@ -1,4 +1,4 @@
-package com.ll.프로그래머스.레벨0;
+package com.ll.프로그래머스.레벨0.d230416;
 
 public class p120585 {
     public int solution(int[] array, int height) {
