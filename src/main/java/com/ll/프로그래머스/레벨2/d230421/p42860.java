@@ -12,32 +12,41 @@ class Solution {
     List<Character> spelling = List.of('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
     public int solution(String name) {
         int answer = 0;
-        List<Integer> isNotA = new ArrayList<>();
-
-        for (int i = 0; i < name.length(); i++) {
-            if (name.charAt(i) != 'A'){
-                isNotA.add(i);
-            }
-        }
-
         int index = 0;
+        String startName = "A".repeat(name.length());
+
         while(true) {
-            if(spelling.indexOf(name.charAt(index)) <= 12) {
-                answer += spelling.indexOf(name.charAt(index)) - 1;
+            if(startName.equals(name)) break;
+
+            int currentIndex = spelling.indexOf(name.charAt(index));
+
+            if(currentIndex <= 13) {
+                answer += currentIndex - spelling.indexOf('A');
             } else {
-                answer += 25 - spelling.indexOf(name.charAt(index));
+                answer += 26 - currentIndex;
             }
-
-            int countA = 0;
-            int tmpIndex = index;
-            while(name.charAt(tmpIndex++) == 'A') {
-                countA++;
+            if(index != name.length() - 1) {
+                answer++;
             }
-
-
         }
+
+        return answer;
+    }
+
+    public int setAlphabet(char name) {
+        int index = spelling.indexOf(name);
+
+        if(index <= 13) {
+            return index;
+        } else {
+            return 26 - index;
+        }
+    }
+
+    public int findBest(int index) {
+
     }
 }
 
-//A B C D E F G H I J K L M | O P Q R S T U V W X Y Z
-//1 2 3 4 5 6 7 8 9 0 1 2 3 | 4 5 6 7 8 9 0 1 2 3 4 5
+//A B C D E F G H I J K L M | N O P Q R S T U V W X Y Z
+//1 2 3 4 5 6 7 8 9 0 1 2 3 | 4 5 6 7 8 9 0 1 2 3 4 5 6
