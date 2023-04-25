@@ -10,7 +10,7 @@ public class p42862 {
 
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
-        int answer = 0;
+        int answer = n;
         int[] uniform = new int[n];
 
         Arrays.fill(uniform, 1);
@@ -23,35 +23,17 @@ class Solution {
             uniform[reserve[i] - 1]++;
         }
 
-        if(uniform[n-1] == 0) {
-            if(uniform[n-2] == 2) {
-                uniform[n-2]--;
-                uniform[n-1]++;
-            }
-        }
-
-        for(int i=1; i<uniform.length - 1; i++) {
+        for(int i=0; i<n; i++) {
             if(uniform[i] == 0) {
-                if(uniform[i-1] == 2) {
+                if(i-1>=0 && uniform[i-1] == 2) {
                     uniform[i-1]--;
                     uniform[i]++;
-                } else if(uniform[i+1] == 2) {
+                } else if(i+1<n && uniform[i+1] == 2) {
                     uniform[i+1]--;
                     uniform[i]++;
+                } else {
+                    answer--;
                 }
-            }
-        }
-
-        if(uniform[0] == 0) {
-            if(uniform[1] == 2) {
-                uniform[1]--;
-                uniform[0]++;
-            }
-        }
-
-        for(int i=0; i<n; i++) {
-            if(uniform[i] >= 1) {
-                answer++;
             }
         }
 
