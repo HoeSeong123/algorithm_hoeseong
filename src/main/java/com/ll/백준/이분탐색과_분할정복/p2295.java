@@ -26,8 +26,10 @@ public class p2295 {
             U.add(Integer.parseInt(br.readLine()));
         }
 
+        // 배열 정렬
         Collections.sort(U);
 
+        // 배열에서 구할 수 있는 모든 합 구하기 (x + y)
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 sum.add(U.get(i) + U.get(j));
@@ -36,10 +38,12 @@ public class p2295 {
 
         Collections.sort(sum);
 
+        // 배열에서 구할 수 있는 모든 차 구하기 (k - z)
         for (int i = N - 1; i >= 0; i--) {
             for (int j = i - 1; j >= 0; j--) {
                 int gap = U.get(i) - U.get(j);
 
+                // 만약 gap이 배열 U에 있고 그 값이 가장 큰 값이라면
                 if (findSum(gap) && U.get(i) > answer) {
                     answer = U.get(i);
                 }
