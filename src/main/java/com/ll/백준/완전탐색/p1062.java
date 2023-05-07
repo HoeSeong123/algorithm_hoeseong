@@ -11,7 +11,7 @@ public class p1062 {
     static int max;
     static List<Set<Character>> words = new ArrayList<>();
     static List<Character> alphabet = new ArrayList<>();
-    static Set<Character> learned = new HashSet<>();
+    static List<Character> learned = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -74,6 +74,7 @@ public class p1062 {
                 }
             }
             max = Math.max(answer, max);
+            return;
         }
 
         for(int i = index; i < alphabet.size(); i++) {
