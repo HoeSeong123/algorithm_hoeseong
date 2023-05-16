@@ -12,6 +12,7 @@ public class p16236 {
     static Shark shark;
     static int N;
     static int[][] map;
+    static int result;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,7 +20,7 @@ public class p16236 {
         N = Integer.parseInt(br.readLine());
         map = new int[N][N];
 
-        int result = 0;
+        result = 0;
         int eatingCount = 0;
 
         for(int y = 0; y < N; y++) {
@@ -28,41 +29,16 @@ public class p16236 {
                 map[y][x] = Integer.parseInt(st.nextToken());
                 if(map[y][x] == 9) {
                     shark = new Shark(y, x);
-
+                    map[y][x] = 0;
                 }
             }
         }
 
         while(true) {
             int tmpResult = result;
-            int tmpY = 0;
-            int tmpX = 0;
-            int minDistance = Integer.MAX_VALUE;
 
-            for (int y = 0; y < N; y++) {
-                boolean moved = false;
-                for (int x = 0; x < N; x++) {
-                    if (map[y][x] < shark.size && map[y][x] != 0) {
-                        int distance = move(y, x);
+            bfs();
 
-                        if (distance == -1) continue;
-
-                        if(distance < minDistance) {
-                            minDistance = distance;
-                            tmpY = y;
-                            tmpX = x;
-                        }
-
-
-                    }
-                }
-            }
-
-            if(minDistance == Integer.MAX_VALUE) break;
-
-            result += minDistance;
-            shark.y = tmpY;
-            shark.x = tmpX;
             eatingCount++;
             map[shark.y][shark.x] = 0;
 
@@ -70,24 +46,28 @@ public class p16236 {
                 shark.size++;
                 eatingCount = 0;
             }
+
+            if(tmpResult == result) break;
         }
 
         System.out.println(result);
     }
 
-    public static int move(int y, int x) {
+    public static void bfs() {
         Queue<Point> queue = new LinkedList<>();
 
-        int[] dy = new int[]{-1, 1, 0, 0};
-        int[] dx = new int[]{0, 0, -1, 1};
+        int[] dy = new int[]{-1, 0, 0, 1};
+        int[] dx = new int[]{0, -1, 1, 0};
 
         int distance = 0;
+        int minDistance = Integer.MAX_VALUE;
+        int minY = 20;
+        int minX = 20;
 
         boolean[][] visited = new boolean[N][N];
 
         queue.add(new Point(shark.y, shark.x));
 
-        map[shark.y][shark.x] = 0;
         visited[shark.y][shark.x] = true;
 
         while(!queue.isEmpty()) {
@@ -95,8 +75,15 @@ public class p16236 {
             for(int i = 0; i < size; i++) {
                 Point point = queue.poll();
 
-                if (point.equals(new Point(y, x))) {
-                    return distance;
+                if(map[point.y][point.x] < shark.size
+                        && map[point.y][point.x] != 0
+                        && distance <= minDistance) {
+                    minDistance = distance;
+
+                    if(point.y < minY || point.y == minY && point.x < minX) {
+                        minY = point.y;
+                        minX = point.x;
+                    }
                 }
 
                 for (int j = 0; j < 4; j++) {
@@ -110,13 +97,20 @@ public class p16236 {
                         queue.add(new Point(ny, nx));
                         visited[ny][nx] = true;
                     }
+
+
                 }
             }
 
+            if(minDistance == distance) {
+                result += distance;
+                shark.y = minY;
+                shark.x = minX;
+                map[shark.y][shark.x] = 0;
+                break;
+            }
             distance++;
         }
-
-        return -1;
     }
 
     public static class Shark {
