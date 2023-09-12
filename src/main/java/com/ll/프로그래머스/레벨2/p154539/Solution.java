@@ -25,6 +25,7 @@ class Solution {
         while(!stack.isEmpty()) {
             answer[stack.pop()] = -1;
         }
+
         return answer;
     }
 }
